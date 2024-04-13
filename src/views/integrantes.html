@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+          
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .integrantes {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .integrantes li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<header>
+    <h1>Aplicação DEVOPS</h1>
+</header>
+
+<body>
+    <div class="container">
+        <h1>Integrantes:</h1>
+        <ul class="integrantes" id="integrantes-list">
+            <!-- Os integrantes serão inseridos aqui pelo JavaScript -->
+        </ul>
+    </div>
+
+    <script>
+        // Dados dos integrantes
+        var data = {'integrantes':[
+            {'nome':'Guilherme do Carmo'},
+            {'nome':'Rayner Kelvin'},
+            {'nome':'Róger Bald'},
+            {'nome':'Vinicyus Oliveira'}
+        ]};
+
+        // Função para exibir os integrantes na lista
+        function exibirIntegrantes() {
+            const integrantesList = document.getElementById('integrantes-list');
+
+            // Limpa a lista antes de adicionar os novos integrantes
+            integrantesList.innerHTML = '';
+
+            // Adiciona cada integrante à lista
+            data.integrantes.forEach(integrante => {
+                const li = document.createElement('li');
+                li.textContent = integrante.nome;
+                integrantesList.appendChild(li);
+            });
+        }
+
+        // Executa a função para exibir os integrantes assim que a página é carregada
+        document.addEventListener('DOMContentLoaded', exibirIntegrantes);
+    </script>
+</body>
+
+<footer>
+    <p>&copy; 2024 Aplicação DEVOPS. Todos os direitos reservados.</p>
+</footer>
+</html>
