@@ -1,106 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integrantes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Integrantes</title>
+        <link rel="stylesheet" href="integrantes-style.css">
+    </head>
+    
+    <body>
+        <header>
+            <h1>Aplicação DEVOPS</h1>
+        </header>
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-          
-        header {
-            background-color: #000000;
-            color: #ffffff;
-            padding: 10px 0;
-            text-align: center;
-        }
+        <div class="container">
+            <h1>Integrantes:</h1>
+            <ul class="integrantes" id="integrantes-list">
+                <!-- Os integrantes serão inseridos aqui pelo JavaScript -->
+            </ul>
+        </div>
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        <!-- Link para voltar para a página inicial -->
+        <a href="http://localhost:3000" class="link-voltar">Voltar para a página inicial</a>
 
-        .integrantes {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        <footer>
+            <p>&copy; 2024 Aplicação DEVOPS. Todos os direitos reservados.</p>
+        </footer>
 
-        .integrantes li {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-        }
+        <script>
+            // Dados dos integrantes
+            var data = {'integrantes':[
+                {'nome':'Guilherme do Carmo', 'github':'https://github.com/guilhermedcl'},
+                {'nome':'Rayner Kelvin', 'github':'https://github.com/rayner27k'},
+                {'nome':'Róger Bald', 'github':'https://github.com/RogerBald'},
+                {'nome':'Vinicyus Oliveira', 'github':'https://github.com/vinicyusads11'}
+            ]};
 
-        footer {
-            background-color: #000000;
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+            // Função para exibir os integrantes na lista
+            function exibirIntegrantes() {
+                const integrantesList = document.getElementById('integrantes-list');
 
-    </style>
-</head>
-<header>
-    <h1>Aplicação DEVOPS</h1>
-</header>
+                // Limpa a lista antes de adicionar os novos integrantes
+                integrantesList.innerHTML = '';
 
-<body>
-    <div class="container">
-        <h1>Integrantes:</h1>
-        <ul class="integrantes" id="integrantes-list">
-            <!-- Os integrantes serão inseridos aqui pelo JavaScript -->
-        </ul>
-    </div>
+                // Adiciona cada integrante à lista com link para o GitHub
+                data.integrantes.forEach(integrante => { // Itera sobre cada integrante no array de dados
+                    const li = document.createElement('li'); // Cria um elemento <li> para cada integrante
+                    const link = document.createElement('a'); // Cria um elemento <a> para o link do GitHub do integrante
+                    link.href = integrante.github; // Define o atributo href do link como o GitHub do integrante
+                    link.textContent = integrante.nome; // Define o texto do link como o nome do integrante
+                    link.classList.add('tooltip'); // Adiciona a classe 'tooltip' ao link
+                    link.setAttribute('target', '_blank'); // Adiciona o atributo target="_blank" para abrir o link em uma nova aba
+                    const tooltipText = document.createElement('span'); // Cria um elemento <span> para o texto do tooltip
+                    tooltipText.classList.add('tooltiptext'); // Adiciona a classe 'tooltiptext' ao texto do tooltip
+                    tooltipText.textContent = integrante.github; // Define o texto do tooltip como o link do GitHub do integrante
+                    link.appendChild(tooltipText); // Adiciona o texto do tooltip como filho do link
+                    li.appendChild(link); // Adiciona o link como filho do elemento <li>
+                    integrantesList.appendChild(li); // Adiciona o elemento <li> à lista de integrantes
+                });
 
-    <script>
-        // Dados dos integrantes
-        var data = {'integrantes':[
-            {'nome':'Guilherme do Carmo'},
-            {'nome':'Rayner Kelvin'},
-            {'nome':'Róger Bald'},
-            {'nome':'Vinicyus Oliveira'}
-        ]};
+            }
 
-        // Função para exibir os integrantes na lista
-        function exibirIntegrantes() {
-            const integrantesList = document.getElementById('integrantes-list');
-
-            // Limpa a lista antes de adicionar os novos integrantes
-            integrantesList.innerHTML = '';
-
-            // Adiciona cada integrante à lista
-            data.integrantes.forEach(integrante => {
-                const li = document.createElement('li');
-                li.textContent = integrante.nome;
-                integrantesList.appendChild(li);
-            });
-        }
-
-        // Executa a função para exibir os integrantes assim que a página é carregada
-        document.addEventListener('DOMContentLoaded', exibirIntegrantes);
-    </script>
-</body>
-
-<footer>
-    <p>&copy; 2024 Aplicação DEVOPS. Todos os direitos reservados.</p>
-</footer>
+            // Executa a função para exibir os integrantes assim que a página é carregada
+            document.addEventListener('DOMContentLoaded', exibirIntegrantes);
+        </script>
+    </body>
 </html>
